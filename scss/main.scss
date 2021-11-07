@@ -49,6 +49,11 @@ main{
                 border-radius: 8px;
                 padding-left: 15px;
                 padding-right: 15px;
+
+            }
+            .marked-text{
+                text-decoration: line-through;
+                color: lightgray;
             }
         }
 

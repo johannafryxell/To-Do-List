@@ -32,6 +32,23 @@ function createList(){
         listItem.id = "task" + [i];
         listItem.innerHTML = taskList[i].taskString;
 
+        //Skapar en checkbox med ett id för platsen listelementet har i arrayen för varje listelement
+        let checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        //checkbox.id = "task" + [i];
+        listItem.appendChild(checkbox);
+
+        // Kan lägga till eventlistener på varje knapp för att se om något är klart
+        checkbox.addEventListener("click", ()=>{
+            if(taskList[i].isDone === false){
+                listItem.classList.add("marked-text");
+                taskList[i].isDone = true;
+            }else{
+                listItem.classList.remove("marked-text");
+                taskList[i].isDone = false;
+            }
+            console.log(taskList[i]);
+        })
         taskContainer.appendChild(listItem);
     }
     document.getElementById("list-wrapper").appendChild(taskContainer);
@@ -52,21 +69,3 @@ function createTask(){
         inputTask.value = "";
     }
 }
-
-
-///KOD ATT ANVÄNDA SEN
-// Skapar en checkbox med ett id för platsen listelementet har i arrayen för varje listelement
-// let checkbox = document.createElement("input");
-// checkbox.type = "checkbox";
-// checkbox.id = "task" + [i];
-// listItem.appendChild(checkbox);
-// // Kan lägga till eventlistener på varje knapp för att se om något är klart
-// checkbox.addEventListener("click", ()=>{
-//     if(taskList[i].isComplete === false){
-//         listItem.classList.add("marked-text");
-//         taskList[i].isComplete = true;
-//     }else{
-//         listItem.classList.remove("marked-text");
-//         taskList[i].isComplete = false;
-//     }
-// })
