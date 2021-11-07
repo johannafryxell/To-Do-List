@@ -15,7 +15,7 @@ let taskList = [task1, task2, task3];
 let newTaskButton = document.getElementById("addTask");
 let inputTask = document.getElementById("inputTask");
 let taskContainer = document.createElement("ul");
-taskContainer.id = "taskContainer";
+taskContainer.id = "task-container";
 
 window.onload = function(){
     // Eventlisteners som triggar funktioner vid click
@@ -43,7 +43,7 @@ function createTask(){
         // Skapar objekt med strängvärdet av input
         let newTask = new Tasks(inputTask.value); // Här kan man ändra så att all input har initial versal
         taskList.push(newTask);
-        document.getElementById("taskContainer").innerHTML= null;
+        document.getElementById("task-container").innerHTML= null;
         createList();
         inputTask.value = "";
     }
