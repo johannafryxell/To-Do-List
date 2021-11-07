@@ -1,0 +1,68 @@
+class Tasks{
+    constructor(taskString){
+        this.taskString = taskString;
+        this.isDone = false;
+    }
+}
+
+// Skapar ursprungsobjekt
+let task1 = new Tasks("Walk the dog");
+let task2 = new Tasks("Answer emails");
+let task3 = new Tasks("Water plants");
+
+// Globala variabler
+let taskList = [task1, task2, task3];
+let newTaskButton = document.getElementById("addTask");
+let inputTask = document.getElementById("inputTask");
+let taskContainer = document.createElement("ul");
+taskContainer.id = "taskContainer";
+
+window.onload = function(){
+    // Eventlisteners som triggar funktioner vid click
+    newTaskButton.addEventListener("click", createTask);
+
+    // Skapa upp en lista
+    createList();
+}
+
+function createList(){
+    for (let i = 0; i < taskList.length; i++) {
+        
+        let listItem = document.createElement("li");
+        listItem.id = "task" + [i];
+        listItem.innerHTML = taskList[i].taskString;
+
+        taskContainer.appendChild(listItem);
+    }
+    document.getElementById("list-wrapper").appendChild(taskContainer);
+    console.log(taskList);
+}
+
+function createTask(){
+    if(inputTask.value.trim() != ""){ // Ändra till isEmpty kanske
+        // Skapar objekt med strängvärdet av input
+        let newTask = new Tasks(inputTask.value); // Här kan man ändra så att all input har initial versal
+        taskList.push(newTask);
+        document.getElementById("taskContainer").innerHTML= null;
+        createList();
+        inputTask.value = "";
+    }
+}
+
+
+///KOD ATT ANVÄNDA SEN
+// Skapar en checkbox med ett id för platsen listelementet har i arrayen för varje listelement
+// let checkbox = document.createElement("input");
+// checkbox.type = "checkbox";
+// checkbox.id = "task" + [i];
+// listItem.appendChild(checkbox);
+// // Kan lägga till eventlistener på varje knapp för att se om något är klart
+// checkbox.addEventListener("click", ()=>{
+//     if(taskList[i].isComplete === false){
+//         listItem.classList.add("marked-text");
+//         taskList[i].isComplete = true;
+//     }else{
+//         listItem.classList.remove("marked-text");
+//         taskList[i].isComplete = false;
+//     }
+// })
