@@ -43,7 +43,11 @@ function createTask(){
         // Skapar objekt med strängvärdet av input
         let newTask = new Tasks(inputTask.value); // Här kan man ändra så att all input har initial versal
         taskList.push(newTask);
+
+        // Tar bort nuvarande lista i ul
         document.getElementById("task-container").innerHTML= null;
+
+        // Lägger in den nya listan i ul
         createList();
         inputTask.value = "";
     }
