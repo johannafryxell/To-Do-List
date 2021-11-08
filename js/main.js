@@ -38,6 +38,12 @@ function createList(){
         //checkbox.id = "task" + [i];
         listItem.appendChild(checkbox);
 
+        // Gör att en avklarad task fortsätter vara markerad då en ny läggs till
+        if(taskList[i].isDone === true){
+            listItem.classList.add("marked-text");
+            checkbox.checked = true;
+        }
+
         // Kan lägga till eventlistener på varje knapp för att se om något är klart
         checkbox.addEventListener("click", ()=>{
             if(taskList[i].isDone === false){
