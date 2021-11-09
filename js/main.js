@@ -23,6 +23,8 @@ window.onload = function(){
 
     // Skapa upp en lista
     createList();
+
+    sortTasks();
 }
 
 function createList(){
@@ -86,7 +88,7 @@ function createTask(){
     if(inputTask.value.trim() != ""){ // Ändra till isEmpty kanske
         // Skapar objekt med strängvärdet av input
         let newTask = new Tasks(inputTask.value); // Här kan man ändra så att all input har initial versal
-        taskList.push(newTask);
+        taskList.unshift(newTask);
 
         // Tar bort nuvarande lista i ul
         document.getElementById("task-container").innerHTML= null;
@@ -97,37 +99,21 @@ function createTask(){
     }
 }
 
-// function removeTask(){
-//     removeButton.addEventListener("click", e=>{
-//         let searchString = e.target.parentElement.parentElement.id;
-//         let numberString = searchString.slice(-1);
-//         let number = parseInt(numberString);
-//         console.log(searchString);
-//         console.log(number);
+function sortTasks(){
+    let completed = document.getElementById("sortCompleted");
+    // let temporaryList = [];
 
-//         taskList.splice = (taskList[number], 1);
-
-//         console.log(taskList);
-//     })
-// }
-
-// function removeTask(){
-
-//         removeButton.addEventListener("click", e=>{
-    
-//             let searchString = e.target.parentElement.parentElement.id;
-//             let numberString = searchString.slice(-1);
-//             let number = parseInt(numberString);
-//             console.log(searchString);
-//             console.log(number);
-    
-//             taskList.splice(taskList[number], 1);
-    
-//             console.log(taskList);
-           
-//             document.getElementById("task-container").innerHTML= null;
-//             createList();
-//         })
+    completed.addEventListener("click", ()=>{
+        taskList.sort(function(a, b){return a.isDone - b.isDone});
         
+        document.getElementById("task-container").innerHTML= null;
+        createList();
 
-// }
+        // Kika på den här
+        if (completed.classList[0]==null){
+            completed.className = "chosenSort";
+        }
+        
+    })
+    
+}

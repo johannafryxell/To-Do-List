@@ -45,6 +45,9 @@ main #main-wrapper #sort-wrapper ul {
 main #main-wrapper #sort-wrapper ul li {
   font-size: 0.9rem;
 }
+main #main-wrapper #sort-wrapper ul .chosenSort {
+  font-weight: bold;
+}
 main #main-wrapper #task-container {
   display: flex;
   flex-direction: column;
