@@ -16,6 +16,7 @@ let newTaskButton = document.getElementById("addTask");
 let inputTask = document.getElementById("inputTask");
 let taskContainer = document.createElement("ul");
 taskContainer.id = "task-container";
+let completed = document.getElementById("sortCompleted");
 
 window.onload = function(){
     // Eventlisteners som triggar funktioner vid click
@@ -73,6 +74,14 @@ function createList(){
             if(taskList[i].isDone === false){
                 listItem.classList.add("marked-text");
                 taskList[i].isDone = true;
+                if(completed.className =="chosenSort"){
+
+                    // Allt i denna if-sats är samma som görs i min sortTasks.. Kan nog förenklas
+                    taskList.sort(function(a, b){return a.isDone - b.isDone});
+                    document.getElementById("task-container").innerHTML= null;
+                    createList();
+                }
+
             }else{
                 listItem.classList.remove("marked-text");
                 taskList[i].isDone = false;
@@ -81,7 +90,6 @@ function createList(){
         taskContainer.appendChild(listItem);
     }
     document.getElementById("list-wrapper").appendChild(taskContainer);
-    console.log(taskList);
 }
 
 function createTask(){
@@ -100,20 +108,16 @@ function createTask(){
 }
 
 function sortTasks(){
-    let completed = document.getElementById("sortCompleted");
-    // let temporaryList = [];
-
     completed.addEventListener("click", ()=>{
         taskList.sort(function(a, b){return a.isDone - b.isDone});
         
         document.getElementById("task-container").innerHTML= null;
         createList();
 
-        // Kika på den här
+        // Kika på den här - Måste kunna klicka 
         if (completed.classList[0]==null){
             completed.className = "chosenSort";
         }
         
     })
-    
 }
