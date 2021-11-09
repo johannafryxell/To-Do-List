@@ -29,6 +29,26 @@ main{
         align-items: center;
         height: 80vh;
 
+        #sort-wrapper{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            width: 270px;
+            row-gap: 5px;
+
+            ul{
+                display: flex;
+                column-gap: 10px;
+                list-style: none;
+                margin-top: 0;
+                padding: 0;
+
+                li{
+                    font-size: 0.9rem;
+                }
+            }
+        }
+
         #task-container{
             display: flex;
             flex-direction: column;

@@ -28,6 +28,23 @@ main #main-wrapper {
   align-items: center;
   height: 80vh;
 }
+main #main-wrapper #sort-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 270px;
+  row-gap: 5px;
+}
+main #main-wrapper #sort-wrapper ul {
+  display: flex;
+  column-gap: 10px;
+  list-style: none;
+  margin-top: 0;
+  padding: 0;
+}
+main #main-wrapper #sort-wrapper ul li {
+  font-size: 0.9rem;
+}
 main #main-wrapper #task-container {
   display: flex;
   flex-direction: column;
