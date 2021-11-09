@@ -48,8 +48,16 @@ main #main-wrapper #task-container li {
   padding-left: 15px;
   padding-right: 15px;
 }
+main #main-wrapper #task-container li div {
+  display: flex;
+  width: 40px;
+  justify-content: space-between;
+  align-items: center;
+}
+main #main-wrapper #task-container li div .remove {
+  font-size: 1.4rem;
+}
 main #main-wrapper #task-container .marked-text {
-  text-decoration: line-through;
   color: lightgray;
 }
 main #main-wrapper #new-task {

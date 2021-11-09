@@ -32,11 +32,33 @@ function createList(){
         listItem.id = "task" + [i];
         listItem.innerHTML = taskList[i].taskString;
 
+        let toggleBox = document.createElement("div");
+        listItem.appendChild(toggleBox);
+        
         //Skapar en checkbox med ett id för platsen listelementet har i arrayen för varje listelement
         let checkbox = document.createElement("input");
         checkbox.type = "checkbox";
-        //checkbox.id = "task" + [i];
-        listItem.appendChild(checkbox);
+        checkbox.className = "checkboxClass";
+        checkbox.id = "checkbox" + [i];
+        toggleBox.appendChild(checkbox);
+
+        // Skapar en stängningsknapp
+        let removeButton = document.createElement("span");
+        let removeButtonContent = document.createTextNode("\u00D7");
+        removeButton.className = "remove";
+        //removeButton.id = "remove" + [i];
+        removeButton.appendChild(removeButtonContent);
+        toggleBox.appendChild(removeButton);
+
+        // Lägger till eventlistener på ta bort ikonerna
+        removeButton.addEventListener("click", ()=>{            
+            taskList.splice([i], 1);
+    
+            console.log(taskList);
+           
+            document.getElementById("task-container").innerHTML= null;
+            createList();
+        })
 
         // Gör att en avklarad task fortsätter vara markerad då en ny läggs till
         if(taskList[i].isDone === true){
@@ -44,7 +66,7 @@ function createList(){
             checkbox.checked = true;
         }
 
-        // Kan lägga till eventlistener på varje knapp för att se om något är klart
+        // Lägger till eventlistener på varje knapp för att se om något är klart
         checkbox.addEventListener("click", ()=>{
             if(taskList[i].isDone === false){
                 listItem.classList.add("marked-text");
@@ -53,7 +75,6 @@ function createList(){
                 listItem.classList.remove("marked-text");
                 taskList[i].isDone = false;
             }
-            console.log(taskList[i]);
         })
         taskContainer.appendChild(listItem);
     }
@@ -75,3 +96,38 @@ function createTask(){
         inputTask.value = "";
     }
 }
+
+// function removeTask(){
+//     removeButton.addEventListener("click", e=>{
+//         let searchString = e.target.parentElement.parentElement.id;
+//         let numberString = searchString.slice(-1);
+//         let number = parseInt(numberString);
+//         console.log(searchString);
+//         console.log(number);
+
+//         taskList.splice = (taskList[number], 1);
+
+//         console.log(taskList);
+//     })
+// }
+
+// function removeTask(){
+
+//         removeButton.addEventListener("click", e=>{
+    
+//             let searchString = e.target.parentElement.parentElement.id;
+//             let numberString = searchString.slice(-1);
+//             let number = parseInt(numberString);
+//             console.log(searchString);
+//             console.log(number);
+    
+//             taskList.splice(taskList[number], 1);
+    
+//             console.log(taskList);
+           
+//             document.getElementById("task-container").innerHTML= null;
+//             createList();
+//         })
+        
+
+// }
