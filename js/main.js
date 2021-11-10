@@ -1,14 +1,15 @@
 class Tasks{
-    constructor(taskString){
+    constructor(taskString, addedNumber){
         this.taskString = taskString;
         this.isDone = false;
+        this.addedNumber = addedNumber;
     }
 }
 
 // Skapar ursprungsobjekt
-let task1 = new Tasks("Walk the dog");
-let task2 = new Tasks("Answer emails");
-let task3 = new Tasks("Water plants");
+let task1 = new Tasks("Walk the dog", 3);
+let task2 = new Tasks("Answer emails", 2);
+let task3 = new Tasks("Water plants", 1);
 
 // Globala variabler
 let taskList = [task1, task2, task3];
@@ -17,28 +18,34 @@ let inputTask = document.getElementById("inputTask");
 let taskContainer = document.createElement("ul");
 taskContainer.id = "task-container";
 let completed = document.getElementById("sortCompleted");
+let latestAdded = document.getElementById("sortLatest");
+latestAdded.className = "chosenSort";
+let objectNumber = 4;
 
 window.onload = function(){
     // Eventlisteners som triggar funktioner vid click
     newTaskButton.addEventListener("click", createTask);
+    completed.addEventListener("click", sortTasksComplete);
+    latestAdded.addEventListener("click", sortLatestAdded);
 
     // Skapa upp en lista
     createList();
-
-    sortTasks();
 }
 
 function createList(){
+
+    // Loopar igenom listan av objekt och skapar upp element i DOM
     for (let i = 0; i < taskList.length; i++) {
         
         let listItem = document.createElement("li");
         listItem.id = "task" + [i];
         listItem.innerHTML = taskList[i].taskString;
 
+        // Skapar en div för de två klickbara elementen
         let toggleBox = document.createElement("div");
         listItem.appendChild(toggleBox);
         
-        //Skapar en checkbox med ett id för platsen listelementet har i arrayen för varje listelement
+        // Skapar en checkbox med ett id för platsen listelementet har i arrayen för varje listelement
         let checkbox = document.createElement("input");
         checkbox.type = "checkbox";
         checkbox.className = "checkboxClass";
@@ -49,11 +56,10 @@ function createList(){
         let removeButton = document.createElement("span");
         let removeButtonContent = document.createTextNode("\u00D7");
         removeButton.className = "remove";
-        //removeButton.id = "remove" + [i];
         removeButton.appendChild(removeButtonContent);
         toggleBox.appendChild(removeButton);
 
-        // Lägger till eventlistener på ta bort ikonerna
+        // Lägger till eventlistener på stängningsknapp
         removeButton.addEventListener("click", ()=>{            
             taskList.splice([i], 1);
     
@@ -63,25 +69,21 @@ function createList(){
             createList();
         })
 
-        // Gör att en avklarad task fortsätter vara markerad då en ny läggs till
+        // Gör att en avklarad task fortsätter vara markerad då listan skapas på nytt
         if(taskList[i].isDone === true){
             listItem.classList.add("marked-text");
             checkbox.checked = true;
         }
 
-        // Lägger till eventlistener på varje knapp för att se om något är klart
+        // Lägger till eventlistener på varje checkbox för att se om något är klart
         checkbox.addEventListener("click", ()=>{
             if(taskList[i].isDone === false){
                 listItem.classList.add("marked-text");
                 taskList[i].isDone = true;
+        // Lägger elementet på rätt plats i listan ifall listan är sorterad efter status
                 if(completed.className =="chosenSort"){
-
-                    // Allt i denna if-sats är samma som görs i min sortTasks.. Kan nog förenklas
-                    taskList.sort(function(a, b){return a.isDone - b.isDone});
-                    document.getElementById("task-container").innerHTML= null;
-                    createList();
+                    sortTasksComplete();
                 }
-
             }else{
                 listItem.classList.remove("marked-text");
                 taskList[i].isDone = false;
@@ -95,7 +97,9 @@ function createList(){
 function createTask(){
     if(inputTask.value.trim() != ""){ // Ändra till isEmpty kanske
         // Skapar objekt med strängvärdet av input
-        let newTask = new Tasks(inputTask.value); // Här kan man ändra så att all input har initial versal
+        let newTask = new Tasks(inputTask.value, objectNumber); // Här kan man ändra så att all input har initial versal
+        
+        //Lägger till objektet längst fram i listan
         taskList.unshift(newTask);
 
         // Tar bort nuvarande lista i ul
@@ -104,20 +108,34 @@ function createTask(){
         // Lägger in den nya listan i ul
         createList();
         inputTask.value = "";
+        objectNumber++;
+
+        console.log(taskList);
     }
 }
 
-function sortTasks(){
-    completed.addEventListener("click", ()=>{
-        taskList.sort(function(a, b){return a.isDone - b.isDone});
+function sortTasksComplete(){
+    // Jämför objektens isDone attribut för att sortera
+    taskList.sort(function(a, b){return a.isDone - b.isDone});
         
-        document.getElementById("task-container").innerHTML= null;
-        createList();
+    document.getElementById("task-container").innerHTML= null;
+    createList();
 
-        // Kika på den här - Måste kunna klicka 
-        if (completed.classList[0]==null){
-            completed.className = "chosenSort";
-        }
-        
-    })
+    // Sätter klass på rätt sorteringsval
+    if (completed.classList[0]==null){
+        completed.className = "chosenSort";
+    }
+    latestAdded.classList.remove("chosenSort");
+}
+
+function sortLatestAdded(){
+    taskList.sort(function(a, b){return b.addedNumber - a.addedNumber});
+    document.getElementById("task-container").innerHTML= null;
+    createList();
+
+    if (latestAdded.classList[0]==null){
+        latestAdded.className = "chosenSort";
+    }
+
+    completed.classList.remove("chosenSort");
 }
