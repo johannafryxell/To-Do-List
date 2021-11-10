@@ -1,16 +1,24 @@
 body {
   margin: 0;
   background-color: #B0A3D4;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   font-size: 14pt;
+  font-family: "Quicksand", sans-serif;
+  background-image: url(/assets/iphone.png);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 header {
   display: flex;
   justify-content: center;
+  align-items: flex-end;
+  height: 25vh;
 }
 header h1 {
   color: white;
+  font-family: "Abril Fatface", cursive;
+  font-weight: 300;
+  margin-bottom: 5px;
 }
 
 main {
@@ -34,6 +42,9 @@ main #main-wrapper #sort-wrapper {
   align-items: flex-start;
   width: 270px;
   row-gap: 5px;
+}
+main #main-wrapper #sort-wrapper span {
+  font-family: "Abril Fatface", cursive;
 }
 main #main-wrapper #sort-wrapper ul {
   display: flex;
@@ -64,7 +75,7 @@ main #main-wrapper #task-container li {
   width: 245px;
   height: 50px;
   border: 1px solid lightgrey;
-  border-radius: 8px;
+  border-radius: 5px;
   padding-left: 15px;
   padding-right: 15px;
 }
@@ -87,12 +98,12 @@ main #main-wrapper #new-task {
   width: 260px;
   height: 50px;
   border: 1px solid lightgrey;
-  border-radius: 8px;
+  border-radius: 5px;
   padding-left: 15px;
   margin-top: 12px;
 }
 main #main-wrapper #new-task #inputTask {
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-family: "Quicksand", sans-serif;
   font-size: 1rem;
   border: none;
 }
@@ -102,8 +113,22 @@ main #main-wrapper #new-task #addTask {
   background-color: #7D80DA;
   border: none;
   color: white;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-family: "Quicksand", sans-serif;
   padding: 10px 10px 5px 5px;
-  border-top-right-radius: 8px;
-  border-bottom-right-radius: 8px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+@media only screen and (min-width: 768px) {
+  body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: url(/assets/desktop.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  body main {
+    width: 70%;
+  }
 }
