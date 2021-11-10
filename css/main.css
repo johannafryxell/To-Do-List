@@ -24,9 +24,9 @@ header h1 {
 main {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   background-color: white;
-  height: 90vh;
+  min-height: 80vh;
   border-top-left-radius: 40px;
   border-top-right-radius: 40px;
 }
@@ -34,7 +34,7 @@ main #main-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 80vh;
+  margin-top: 40px;
 }
 main #main-wrapper #sort-wrapper {
   display: flex;
@@ -125,10 +125,8 @@ main #main-wrapper #new-task #addTask {
     flex-direction: column;
     align-items: center;
     background-image: url(/assets/desktop.png);
-    background-repeat: no-repeat;
-    background-size: cover;
   }
   body main {
-    width: 70%;
+    width: 768px;
   }
 }
