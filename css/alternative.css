@@ -1,11 +1,10 @@
-body {
-  margin: 0;
-  background-color: #B0A3D4;
-  font-size: 14pt;
+html {
   font-family: "Quicksand", sans-serif;
-  background-image: url(/assets/iphone.png);
-  background-repeat: no-repeat;
-  background-size: cover;
+}
+
+body {
+  background-color: #FFC3BB;
+  margin: 0;
 }
 
 header {
@@ -15,31 +14,29 @@ header {
   height: 25vh;
 }
 header h1 {
-  color: white;
+  color: blue;
   font-family: "Abril Fatface", cursive;
+  font-size: 3rem;
   font-weight: 300;
   margin-bottom: 5px;
 }
 
 main {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  background-color: white;
-  min-height: 80vh;
-  border-top-left-radius: 40px;
-  border-top-right-radius: 40px;
+  height: 700px;
+  background-image: url(/assets/paper.png);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 main #main-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 40px;
 }
 main #main-wrapper #sort-wrapper {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: space-between;
+  height: 53px;
   width: 270px;
   row-gap: 5px;
 }
@@ -51,11 +48,12 @@ main #main-wrapper #sort-wrapper ul {
   column-gap: 10px;
   list-style: none;
   margin-top: 0;
+  margin-bottom: 9px;
   padding: 0;
 }
 main #main-wrapper #sort-wrapper ul li {
   font-size: 0.9rem;
-  cursor: pointer;
+  margin: 0;
 }
 main #main-wrapper #sort-wrapper ul .chosenSort {
   font-weight: bold;
@@ -63,7 +61,6 @@ main #main-wrapper #sort-wrapper ul .chosenSort {
 main #main-wrapper #task-container {
   display: flex;
   flex-direction: column;
-  row-gap: 12px;
   list-style: none;
   padding: 0;
   margin: 0;
@@ -72,10 +69,9 @@ main #main-wrapper #task-container {
 main #main-wrapper #task-container li {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-end;
   width: 245px;
-  height: 50px;
-  border: 1px solid lightgrey;
+  height: 46px;
   border-radius: 5px;
   padding-left: 15px;
   padding-right: 15px;
@@ -83,6 +79,7 @@ main #main-wrapper #task-container li {
 main #main-wrapper #task-container li div {
   display: flex;
   width: 40px;
+  height: 46;
   justify-content: space-between;
   align-items: center;
 }
@@ -98,7 +95,6 @@ main #main-wrapper #new-task {
   align-items: center;
   width: 260px;
   height: 50px;
-  border: 1px solid lightgrey;
   border-radius: 5px;
   padding-left: 15px;
   margin-top: 12px;
@@ -109,25 +105,21 @@ main #main-wrapper #new-task #inputTask {
   border: none;
 }
 main #main-wrapper #new-task #addTask {
-  height: 50px;
+  height: 30px;
   width: 30%;
-  background-color: #7D80DA;
-  border: none;
-  color: white;
+  border: 1px solid black;
   font-family: "Quicksand", sans-serif;
-  padding: 10px 10px 5px 5px;
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
+  padding: 2px;
+  border-radius: 5px;
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 500px) {
   body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-image: url(/assets/desktop.png);
   }
   body main {
-    width: 768px;
+    width: 500px;
   }
 }
