@@ -34,7 +34,7 @@ window.onload = function(){
 }
 
 function createList(){
-    
+
     // Loopar igenom listan av objekt och skapar upp element i DOM
     for (let i = 0; i < taskList.length; i++) {
         
@@ -81,7 +81,7 @@ function createList(){
     document.getElementById("list-wrapper").appendChild(taskContainer);
 }
 
-function createTask(){
+function createTask(){    
     event.preventDefault();
     // Tar bort mellanslag från sträng och kollar om den är tom och inte för lång
     if(inputTask.value.trim() != "" && inputTask.value.length < 20){
