@@ -82,8 +82,9 @@ function createList(){
 }
 
 function createTask(){
-    // Tar bort mellanslag från sträng och kollar om den är tom
-    if(inputTask.value.trim() != ""){
+    event.preventDefault();
+    // Tar bort mellanslag från sträng och kollar om den är tom och inte för lång
+    if(inputTask.value.trim() != "" && inputTask.value.length < 10){
         // Skapar objekt med strängvärdet av input
         let newTask = new Tasks(inputTask.value, objectNumber); // Här kan man ändra så att all input har initial versal
         
@@ -99,6 +100,9 @@ function createTask(){
         objectNumber++;
 
         console.log(taskList);
+    }else{
+        // Förklarar varför inget händer i listan
+        alert("You need to write something between 1-20 characters!");
     }
 }
 
