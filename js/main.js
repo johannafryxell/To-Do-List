@@ -33,7 +33,7 @@ window.onload = function(){
 }
 
 function createList(){
-
+    
     // Loopar igenom listan av objekt och skapar upp element i DOM
     for (let i = 0; i < taskList.length; i++) {
         
@@ -60,13 +60,8 @@ function createList(){
         toggleBox.appendChild(removeButton);
 
         // Lägger till eventlistener på stängningsknapp
-        removeButton.addEventListener("click", ()=>{            
-            taskList.splice([i], 1);
-    
-            console.log(taskList);
-           
-            document.getElementById("task-container").innerHTML= null;
-            createList();
+        removeButton.addEventListener("click", ()=>{
+            removeTask(i);            
         })
 
         // Gör att en avklarad task fortsätter vara markerad då listan skapas på nytt
@@ -77,30 +72,26 @@ function createList(){
 
         // Lägger till eventlistener på varje checkbox för att se om något är klart
         checkbox.addEventListener("click", ()=>{
-            if(taskList[i].isDone === false){
-                listItem.classList.add("marked-text");
-                taskList[i].isDone = true;
-        // Lägger elementet på rätt plats i listan ifall listan är sorterad efter status
-                if(completed.className =="chosenSort"){
-                    sortTasksComplete();
-                }
-            }else{
-                listItem.classList.remove("marked-text");
-                taskList[i].isDone = false;
-            }
-        })
+            markDone(i);
+        })        
+
+        // Lägger till listelementet i ul:en
         taskContainer.appendChild(listItem);
     }
     document.getElementById("list-wrapper").appendChild(taskContainer);
 }
 
 function createTask(){
-    if(inputTask.value.trim() != ""){ // Ändra till isEmpty kanske
+    // Tar bort mellanslag från sträng och kollar om den är tom
+    if(inputTask.value.trim() != ""){
         // Skapar objekt med strängvärdet av input
         let newTask = new Tasks(inputTask.value, objectNumber); // Här kan man ändra så att all input har initial versal
         
         //Lägger till objektet längst fram i listan
         taskList.unshift(newTask);
+
+        // Anropar funktion som lägger till listan i localStorage
+        addLocalStorage();
 
         // Tar bort nuvarande lista i ul
         document.getElementById("task-container").innerHTML= null;
@@ -138,4 +129,27 @@ function sortLatestAdded(){
     }
 
     completed.classList.remove("chosenSort");
+}
+
+function markDone(i){
+    let listItem = document.getElementById("task"+[i]);
+// Sätter klass på elementet och ändrar boolean till true
+    if(taskList[i].isDone != true){
+        listItem.classList.add("marked-text");
+        taskList[i].isDone = true;
+// Lägger elementet på rätt plats i listan ifall listan är sorterad efter status
+        if(completed.className =="chosenSort"){
+            sortTasksComplete();
+        }
+    }else{
+        listItem.classList.remove("marked-text");
+        taskList[i].isDone = false;
+    }
+}
+
+function removeTask(i){
+    taskList.splice([i], 1);
+           
+    document.getElementById("task-container").innerHTML= null;
+    createList();
 }
