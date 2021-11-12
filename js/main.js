@@ -99,7 +99,6 @@ function createTask(){
         inputTask.value = "";
         objectNumber++;
 
-        console.log(taskList);
     }else{
         // Förklarar varför inget händer i listan
         alert("You need to write something between 1-20 characters!");
