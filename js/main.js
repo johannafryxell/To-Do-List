@@ -50,7 +50,6 @@ function createList(){
         let checkbox = document.createElement("input");
         checkbox.type = "checkbox";
         checkbox.className = "checkboxClass";
-        checkbox.id = "checkbox" + [i];
         toggleBox.appendChild(checkbox);
 
         // Skapar en stängningsknapp
@@ -85,7 +84,7 @@ function createList(){
 function createTask(){
     event.preventDefault();
     // Tar bort mellanslag från sträng och kollar om den är tom och inte för lång
-    if(inputTask.value.trim() != "" && inputTask.value.length < 10){
+    if(inputTask.value.trim() != "" && inputTask.value.length < 20){
         // Skapar objekt med strängvärdet av input
         let newTask = new Tasks(inputTask.value, objectNumber);
         

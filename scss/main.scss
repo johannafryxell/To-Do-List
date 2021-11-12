@@ -93,7 +93,12 @@ main{
                     align-items: center;
 
                     .remove{
+                        cursor: pointer;
                         font-size: 1.4rem;
+                    }
+
+                    .checkboxClass{
+                        cursor: pointer;
                     }
                 }
 
@@ -130,6 +135,7 @@ main{
                 padding: 10px 10px 5px 5px;
                 border-top-right-radius: 5px;
                 border-bottom-right-radius: 5px;
+                cursor: pointer;
             }
         }
         
