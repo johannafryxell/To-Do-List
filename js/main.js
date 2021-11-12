@@ -20,6 +20,7 @@ taskContainer.id = "task-container";
 let completed = document.getElementById("sortCompleted");
 let latestAdded = document.getElementById("sortLatest");
 latestAdded.className = "chosenSort";
+// Sätter variabeln som följer värdet på de färdiga objektens addedNumber
 let objectNumber = 4;
 
 window.onload = function(){
@@ -86,7 +87,7 @@ function createTask(){
     // Tar bort mellanslag från sträng och kollar om den är tom och inte för lång
     if(inputTask.value.trim() != "" && inputTask.value.length < 10){
         // Skapar objekt med strängvärdet av input
-        let newTask = new Tasks(inputTask.value, objectNumber); // Här kan man ändra så att all input har initial versal
+        let newTask = new Tasks(inputTask.value, objectNumber);
         
         //Lägger till objektet längst fram i listan
         taskList.unshift(newTask);
