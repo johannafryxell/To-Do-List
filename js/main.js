@@ -90,9 +90,6 @@ function createTask(){
         //Lägger till objektet längst fram i listan
         taskList.unshift(newTask);
 
-        // Anropar funktion som lägger till listan i localStorage
-        addLocalStorage();
-
         // Tar bort nuvarande lista i ul
         document.getElementById("task-container").innerHTML= null;
 
@@ -137,13 +134,13 @@ function markDone(i){
     if(taskList[i].isDone != true){
         listItem.classList.add("marked-text");
         taskList[i].isDone = true;
-// Lägger elementet på rätt plats i listan ifall listan är sorterad efter status
-        if(completed.className =="chosenSort"){
-            sortTasksComplete();
-        }
     }else{
         listItem.classList.remove("marked-text");
         taskList[i].isDone = false;
+    }
+    // Lägger elementet på rätt plats i listan ifall listan är sorterad efter status
+    if(completed.className =="chosenSort"){
+        sortTasksComplete();
     }
 }
 
