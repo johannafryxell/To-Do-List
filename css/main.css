@@ -34,7 +34,7 @@ main #main-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 40px;
+  margin-top: 15px;
 }
 main #main-wrapper #sort-wrapper {
   display: flex;
@@ -63,7 +63,7 @@ main #main-wrapper #sort-wrapper ul .chosenSort {
 main #main-wrapper #task-container {
   display: flex;
   flex-direction: column;
-  row-gap: 12px;
+  row-gap: 12.5px;
   list-style: none;
   padding: 0;
   margin: 0;

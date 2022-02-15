@@ -1,18 +1,15 @@
 class Tasks{
-    constructor(taskString, addedNumber){
+    constructor(taskString, id){
         this.taskString = taskString;
         this.isDone = false;
-        this.addedNumber = addedNumber;
+        this.id = id;
     }
 }
 
-// Skapar ursprungsobjekt
-let task1 = new Tasks("Walk the dog", 3);
-let task2 = new Tasks("Answer emails", 2);
-let task3 = new Tasks("Water plants", 1);
+// Hämtar lista från localStorage eller skapar en ny tom
+let taskList = JSON.parse(localStorage.getItem("taskList")) || [];
 
 // Globala variabler
-let taskList = [task1, task2, task3];
 let newTaskButton = document.getElementById("addTask");
 let inputTask = document.getElementById("inputTask");
 let taskContainer = document.createElement("ul");
@@ -20,8 +17,6 @@ taskContainer.id = "task-container";
 let completed = document.getElementById("sortCompleted");
 let latestAdded = document.getElementById("sortLatest");
 latestAdded.className = "chosenSort";
-// Sätter variabeln som följer värdet på de färdiga objektens addedNumber
-let objectNumber = 4;
 
 window.onload = function(){
     // Eventlisteners som triggar funktioner vid click
@@ -34,6 +29,7 @@ window.onload = function(){
 }
 
 function createList(){
+    localStorage.setItem("taskList", JSON.stringify(taskList));
 
     // Loopar igenom listan av objekt och skapar upp element i DOM
     for (let i = 0; i < taskList.length; i++) {
@@ -81,12 +77,22 @@ function createList(){
     document.getElementById("list-wrapper").appendChild(taskContainer);
 }
 
+function getNewId(list) {
+    let maxId = 0;
+    for (const item of list) {
+      if (item.id > maxId) {
+        maxId = item.id;
+      }
+    }
+    return maxId + 1;
+}
+
 function createTask(){    
     event.preventDefault();
     // Tar bort mellanslag från sträng och kollar om den är tom och inte för lång
     if(inputTask.value.trim() != "" && inputTask.value.length < 20){
         // Skapar objekt med strängvärdet av input
-        let newTask = new Tasks(inputTask.value, objectNumber);
+        let newTask = new Tasks(inputTask.value, getNewId(taskList));
         
         //Lägger till objektet längst fram i listan
         taskList.unshift(newTask);
@@ -97,7 +103,6 @@ function createTask(){
         // Lägger in den nya listan i ul
         createList();
         inputTask.value = "";
-        objectNumber++;
 
     }else{
         // Förklarar varför inget händer i listan
@@ -120,7 +125,7 @@ function sortTasksComplete(){
 }
 
 function sortLatestAdded(){
-    taskList.sort(function(a, b){return b.addedNumber - a.addedNumber});
+    taskList.sort(function(a, b){return b.id - a.id});
     document.getElementById("task-container").innerHTML= null;
     createList();
 
@@ -134,7 +139,7 @@ function sortLatestAdded(){
 function markDone(i){
     let listItem = document.getElementById("task"+[i]);
 // Sätter klass på elementet och ändrar boolean till true
-    if(taskList[i].isDone != true){
+    if(!taskList[i].isDone){
         listItem.classList.add("marked-text");
         taskList[i].isDone = true;
     }else{
@@ -145,6 +150,7 @@ function markDone(i){
     if(completed.className =="chosenSort"){
         sortTasksComplete();
     }
+    localStorage.setItem("taskList", JSON.stringify(taskList));
 }
 
 function removeTask(i){
