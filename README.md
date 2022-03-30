@@ -1,4 +1,4 @@
-# To do list✅
+# To do list ✓
 A basic to do list I created while learning JavaScript
 
 ![](./assets/ToDoList.jpeg)
