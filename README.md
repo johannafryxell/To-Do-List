@@ -1,7 +1,7 @@
 # To do list.
 A basic to do list I created while learning basic JavaScript
 
-![](./ToDoList.jpeg)
+![](./assets/ToDoList.jpeg)
 
 
 ## Installation
