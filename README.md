@@ -9,7 +9,8 @@ Clone the repo\
 git clone https://github.com/johannafryxell/ToDoList
 
 ## Built with
-- HTML & SASS
+- HTML
+- Sass
 - JavaScript
 - Gulp
 
