@@ -1,5 +1,5 @@
-# To do list.
-A basic to do list I created while learning basic JavaScript
+# To do list✅
+A basic to do list I created while learning JavaScript
 
 ![](./assets/ToDoList.jpeg)
 
